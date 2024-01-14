@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateBoardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('status_id');
-            $table->unsignedInteger('board_id');
-            $table->string('name');
-            $table->text('description');
-            $table->timestamps('');
+            $table->string('title');
+            $table->unsignedInteger('team_id');
+            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tasks');
+        Schema::drop('boards');
     }
 }
