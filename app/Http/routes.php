@@ -17,7 +17,7 @@
 
 Route::auth();
 //Головна сторінка. На ній відображаємо дошку
-Route::get('/', 'TaskController@index');
+Route::get('/', 'HomeController@index');
 
 
 
