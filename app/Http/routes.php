@@ -20,3 +20,7 @@ Route::auth();
 Route::get('/', 'TaskController@index');
 
 
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

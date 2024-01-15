@@ -35,7 +35,7 @@ class CreateTasksTable extends Migration
         $table->dropForeign('tasks_status_id_foreign');
         $table->dropForeign('tasks_board_id_foreign');
       });
-        Schema::drop('tasks');
+        Schema::dropIfExists('tasks');
 
     }
 }
