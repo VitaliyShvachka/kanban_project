@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::auth();
+//Головна сторінка. На ній відображаємо дошку
+Route::get('/', 'TaskController@index');
+
+
