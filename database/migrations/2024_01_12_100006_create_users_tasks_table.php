@@ -32,6 +32,6 @@ class CreateUsersTasksTable extends Migration
           $table->dropForeign('users_task_task_id_foreign');
           $table->dropForeign('users_task_user_id_foreign');
         });
-        Schema::drop('users_task');
+        Schema::dropIfExists('users_task');
     }
 }
