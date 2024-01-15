@@ -16,7 +16,7 @@ class CreateBoardsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->unsignedInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+//            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 
@@ -27,6 +27,10 @@ class CreateBoardsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('boards');
+
+//      Schema::table('boards', function (Blueprint $table){
+//        $table->dropForeign('boards_team_id_foreign');
+//      });
+      Schema::drop('boards');
     }
 }

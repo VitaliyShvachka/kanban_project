@@ -19,6 +19,8 @@ class CreateTasksTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->timestamps('');
+            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('board_id')->references('id')->on('boards');
         });
     }
 
@@ -29,6 +31,11 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
+      Schema::table('tasks', function (Blueprint $table){
+        $table->dropForeign('tasks_status_id_foreign');
+        $table->dropForeign('tasks_board_id_foreign');
+      });
         Schema::drop('tasks');
+
     }
 }

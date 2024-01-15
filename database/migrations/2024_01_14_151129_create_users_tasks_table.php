@@ -15,8 +15,8 @@ class CreateUsersTasksTable extends Migration
         Schema::create('users_task', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks');
             $table->unsignedInteger('user_id');
+            $table->foreign('task_id')->references('id')->on('tasks');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -28,6 +28,10 @@ class CreateUsersTasksTable extends Migration
      */
     public function down()
     {
+        Schema::table('users_task', function (Blueprint $table){
+          $table->dropForeign('users_task_task_id_foreign');
+          $table->dropForeign('users_task_user_id_foreign');
+        });
         Schema::drop('users_task');
     }
 }
