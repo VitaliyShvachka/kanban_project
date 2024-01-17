@@ -16,6 +16,15 @@ class CreateStatusesTable extends Migration
         $table->increments('id');
         $table->string('name');
       });
+        DB::table('statuses')->insert([
+            'name' => 'to do'
+        ]);
+        DB::table('statuses')->insert([
+            'name' => 'in progress'
+        ]);
+        DB::table('statuses')->insert([
+            'name' => 'done'
+        ]);
     }
 
     /**
