@@ -12,15 +12,14 @@
 */
 
 Route::auth();
+
+
 //Головна сторінка. На ній відображаємо дошку
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('main');
 
-Route::auth();
-
-//Route::get('/home', 'HomeController@index');
- // TeamController
+//  TeamController
 Route::get('/team/create', 'TeamController@create');
-Route::post('/team', 'TeamController@store');
+Route::post('/team', 'TeamController@store')->name('team.store');
 
 // BoardController
 Route::get('/board/show/{board}', 'BoardController@show');
