@@ -16,8 +16,8 @@ class CreateTeamsUserTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('team_id');
             $table->unsignedInteger('user_id');
-          $table->foreign('team_id')->references('id')->on('teams');
-          $table->foreign('user_id')->references('id')->on('users');
+//          $table->foreign('team_id')->references('id')->on('teams');
+//          $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -28,10 +28,10 @@ class CreateTeamsUserTable extends Migration
      */
     public function down()
     {
-      Schema::table('teams_user', function (Blueprint $table){
-        $table->dropForeign('users_task_team_id_foreign');
-        $table->dropForeign('users_task_user_id_foreign');
-      });
+//      Schema::table('teams_user', function (Blueprint $table){
+//        $table->dropForeign('users_task_team_id_foreign');
+//        $table->dropForeign('users_task_user_id_foreign');
+//      });
         Schema::dropIfExists('teams_user');
     }
 }
