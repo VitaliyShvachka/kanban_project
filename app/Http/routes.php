@@ -20,7 +20,7 @@ Route::auth();
 //Route::get('/home', 'HomeController@index');
  // TeamController
 Route::get('/team/create', 'TeamController@create');
-Route::post('/team', 'TeamController@store');
+Route::post('/team', 'TeamController@store')->name('team.store');
 
 // BoardController
 Route::get('/board/show/{board}', 'BoardController@show');
