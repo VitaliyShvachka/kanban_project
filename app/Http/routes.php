@@ -19,7 +19,10 @@ Route::get('/', 'HomeController@index')->name('main');
 
 //  TeamController
 Route::get('/team/create', 'TeamController@create');
+Route::get('/team/{id}/adduser', 'TeamController@adduser');
+Route::get('/team/users', 'TeamController@autocomplete');
 Route::post('/team', 'TeamController@store')->name('team.store');
+Route::post('/team/teamUserStore', 'TeamController@teamUserStore')->name('team.teamUserStore');
 
 // BoardController
 Route::get('/board/show/{board}', 'BoardController@show');
