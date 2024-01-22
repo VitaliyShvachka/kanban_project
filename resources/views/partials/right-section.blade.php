@@ -17,9 +17,8 @@
 
 
 <section class="right-section">
-
- <div class="column">Колонка 1</div>
- <div class="column">Колонка 2</div>
- <div class="column">Колонка 3</div>
+ @foreach($statuses as $status)
+ <div class="column">{{$status->name}}</div>
+ @endforeach
 </section>
 
