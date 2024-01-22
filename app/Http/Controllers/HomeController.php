@@ -28,8 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
         $statuses = Status::all();
         return view('home', compact('statuses', 'statuses'));
     }
