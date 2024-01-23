@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Board;
 use App\Models\Status;
+use App\Models\Team;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $teams = Team::all();
         $statuses = Status::all();
-        return view('home', compact('statuses', 'statuses'));
+        return view('home', compact('statuses', 'teams'));
     }
 }
