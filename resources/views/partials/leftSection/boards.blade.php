@@ -1,7 +1,7 @@
-<button class="btn btn-primary">Добавить доску</button>
+<h3>Перелік дошок</h3>
 <ul id="task-list">
-    <li><a href="/board/1/create" title="">Доска 1</a> </li>
-    <li>Задача 2</li>
-    <li>Задача 3</li>
+    <li><a href="/board/1/show" title="">Дошка 1</a></li>
+    <li><a href="/board/2/show" title="">Дошка 2</a></li>
+    <li><a href="/board/3/show" title="">Дошка 3</a></li>
 </ul>
 
