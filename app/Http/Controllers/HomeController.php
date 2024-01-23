@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Board;
+use App\Models\Status;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 
@@ -16,6 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -25,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $statuses = Status::all();
+        return view('home', compact('statuses', 'statuses'));
     }
 }
