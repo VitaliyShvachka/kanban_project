@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('form')
 @section('content')
   @include('partials.header')
 

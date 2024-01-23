@@ -21,10 +21,13 @@ Route::get('/', 'HomeController@index')->name('main');
 Route::get('/team/create', 'TeamController@create');
 Route::post('/team', 'TeamController@store')->name('team.store');
 
-// BoardController
+//
+//BoardController
 Route::get('/board/show/{board}', 'BoardController@show');
 Route::get('/board/create', 'BoardController@create');
-Route::post('/board', 'BoardController@store');
+//Route::post('/board/create', 'BoardController@create');
+//Route::post('/board', 'BoardController@store'); //Віталія код
+Route::post('/board/store', 'BoardController@store')->name('board.store');
 
 //TaskController
 Route::get('/task/create', 'TaskController@create');
