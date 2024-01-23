@@ -8,8 +8,6 @@
     <div class="row">
       <div class="col-md-4">
         @include('partials.leftSection.teams')
-      </div>
-      <div class="col-md-4">
         @include('partials.leftSection.boards')
       </div>
       <div class="col-md-8">
