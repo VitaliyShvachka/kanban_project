@@ -6,8 +6,10 @@ use App\Http\Requests;
 use App\Models\Board;
 use App\Models\Status;
 use App\Models\Team;
+use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,8 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
+        $id = Auth::id();// Отримуємо id авторизованого користувача
+        $teamsUser = User::find($id)->teams()->first();
+        $teams = User::find($id)->teams()->get(); //отримуємо список команд, де учасником є авторизований користувач
+        $team_id = $teamsUser->pivot->team_id;
+        $boards = Board::all();
+        dump($teamsUser);
         $statuses = Status::all();
-        return view('home', compact('statuses', 'teams'));
+        return view('home', compact('statuses', 'teams', 'boards', 'team_id'));
     }
 }
