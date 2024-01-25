@@ -34,9 +34,7 @@ class HomeController extends Controller
         $id = Auth::id();// Отримуємо id авторизованого користувача
         $teamsUser = User::find($id)->teams()->first();
         $teams = User::find($id)->teams()->get();//отримуємо список команд, де учасником є авторизований користувач
-//        $boards = Board::all();
-        $boards = Board::with('owner')->get();
-        dump($boards);
+        $boards = Board::all();
         $statuses = Status::all();
         return view('home', compact('statuses', 'teams', 'boards'));
     }
