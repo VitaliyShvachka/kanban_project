@@ -18,7 +18,7 @@ Route::auth();
 Route::get('/', 'HomeController@index')->name('main');
 
 //  TeamController
-Route::get('/team/create', 'TeamController@create');
+Route::get('/team/create', 'TeamController@create')->name('team.create');
 Route::get('/team/{id}/adduser', 'TeamController@adduser');
 Route::get('/team/users', 'TeamController@autocomplete');
 Route::post('/team', 'TeamController@store')->name('team.store');
@@ -27,9 +27,9 @@ Route::post('/team/teamUserStore', 'TeamController@teamUserStore')->name('team.t
 // BoardController
 Route::get('/board/show/{board}', 'BoardController@show');
 Route::get('/board/{team}/create', 'BoardController@create')->name('board.create');
-Route::post('/board', 'BoardController@store');
+Route::post('/{team}/board', 'BoardController@store')->name('board.store');
 
 //TaskController
-Route::get('/task/create', 'TaskController@create');
+Route::get('/task/{board}/create', 'TaskController@create')->name('task.create');
 Route::post('/task', 'TaskController@store');
 Route::post('/task/update/{task}', 'TaskController@update');

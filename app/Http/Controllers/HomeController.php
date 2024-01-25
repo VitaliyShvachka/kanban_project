@@ -33,11 +33,11 @@ class HomeController extends Controller
     {
         $id = Auth::id();// Отримуємо id авторизованого користувача
         $teamsUser = User::find($id)->teams()->first();
-        $teams = User::find($id)->teams()->get(); //отримуємо список команд, де учасником є авторизований користувач
-        $team_id = $teamsUser->pivot->team_id;
-        $boards = Board::all();
-        dump($teamsUser);
+        $teams = User::find($id)->teams()->get();//отримуємо список команд, де учасником є авторизований користувач
+//        $boards = Board::all();
+        $boards = Board::with('owner')->get();
+        dump($boards);
         $statuses = Status::all();
-        return view('home', compact('statuses', 'teams', 'boards', 'team_id'));
+        return view('home', compact('statuses', 'teams', 'boards'));
     }
 }

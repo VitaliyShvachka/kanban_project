@@ -75,7 +75,6 @@
             </div>
         </div>
     </nav>
-    @include('form')
     @yield('content')
 
 
