@@ -17,10 +17,7 @@ class BoardController extends Controller
     }
   public function create(Team $team)
   {
-
       return view('boards.create', ['team' => $team]);
-
-
   }
   public function store(Request $request, Team $team)
   {

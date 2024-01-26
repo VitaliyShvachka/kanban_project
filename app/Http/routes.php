@@ -25,12 +25,12 @@ Route::post('/team', 'TeamController@store')->name('team.store');
 Route::post('/team/teamUserStore', 'TeamController@teamUserStore')->name('team.teamUserStore');
 
 // BoardController
-Route::get('/board/show/{board}', 'BoardController@show');
+Route::get('/board/show/{board}', 'BoardController@show')->name('board.show');
 Route::get('/board/{team}/create', 'BoardController@create')->name('board.create');
 Route::post('/{team}/board', 'BoardController@store')->name('board.store');
 
 //TaskController
 Route::get('/task/{board}/create', 'TaskController@create')->name('task.create');
 Route::get('/board/{board}/{task}/show', 'TaskController@show')->name('task.show');
-Route::post('/task', 'TaskController@store');
-Route::post('/task/update/{task}', 'TaskController@update');
+Route::post('/task', 'TaskController@store')->name('task.store');
+Route::post('/task/update/{task}', 'TaskController@update')->name('task.update');
