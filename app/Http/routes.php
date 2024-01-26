@@ -31,5 +31,6 @@ Route::post('/{team}/board', 'BoardController@store')->name('board.store');
 
 //TaskController
 Route::get('/task/{board}/create', 'TaskController@create')->name('task.create');
+Route::get('/board/{board}/{task}/show', 'TaskController@show')->name('task.show');
 Route::post('/task', 'TaskController@store');
 Route::post('/task/update/{task}', 'TaskController@update');

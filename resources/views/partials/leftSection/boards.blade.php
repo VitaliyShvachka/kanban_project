@@ -1,12 +1,14 @@
 <h4>Список дошок користувача</h4>
 <ul id="task-list">
-        @foreach($boards as $board)
-{{--            @if($team_id == $board->team_id)--}}
-            <li>
-                <a href="/board/1/show" title="">{{$board->title}} - {{$board->team_id}}</a>
-                <a href="{{route('board.create', ['$board' => $board->id])}}" class="btn btn-default">Додати задачу</a>
-            </li>
-{{--            @endif--}}
-        @endforeach
+    @foreach($teams as $team)
+            @foreach($boards as $board)
+                @if($board->team_id == $team->id )
+                <li>
+                    <a href="/board/1/show" title="">{{$board->title}}</a>
+                    <a href="{{route('task.create', ['$board' => $board->id])}}" class="btn btn-default">Додати задачу</a>
+                </li>
+                @endif
+            @endforeach
+    @endforeach
 </ul>
 
