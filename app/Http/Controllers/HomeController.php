@@ -31,11 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::id();// Отримуємо id авторизованого користувача
-        $teamsUser = User::find($id)->teams()->first();
-        $teams = User::find($id)->teams()->get();//отримуємо список команд, де учасником є авторизований користувач
-        $boards = Board::all();
+        $user = Auth::user();
+        $teamsUser = $user->teams; // Отримати всі команди по користувачу (Collection)
+        $teamsUser = $user->teams()->with('boards')->get();//Доповнюємо конструктор запитів невідкладним вибором звʼязків Board
+       $id = Auth::id();// Отримуємо id авторизованого користувача
+//        $teamsUser = User::find($id)->teams()->first();
+//        $teams = User::find($id)->teams()->get();//отримуємо список команд, де учасником є авторизований користувач
+//        $boards = Board::all();
         $statuses = Status::all();
-        return view('home', compact('statuses', 'teams', 'boards'));
+        return view('home', [
+            'teams' => $teamsUser,
+            'statuses' => $statuses,
+        ]);
     }
 }
