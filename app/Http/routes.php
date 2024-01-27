@@ -25,7 +25,7 @@ Route::post('/team', 'TeamController@store')->name('team.store');
 Route::post('/team/teamUserStore', 'TeamController@teamUserStore')->name('team.teamUserStore');
 
 // BoardController
-Route::get('/board/show/{board}', 'BoardController@show')->name('board.show');
+Route::get('/board/{board}/show', 'BoardController@show')->name('board.show');
 Route::get('/board/{team}/create', 'BoardController@create')->name('board.create');
 Route::post('/{team}/board', 'BoardController@store')->name('board.store');
 

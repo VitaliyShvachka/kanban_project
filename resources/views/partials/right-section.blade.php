@@ -15,10 +15,9 @@
  }
 </style>
 
-
 <section class="right-section">
  @foreach($statuses as $status)
- <div class="column">{{$status->name}}</div>
+  <div class="column">{{$status->name}}</div>
  @endforeach
 </section>
 
