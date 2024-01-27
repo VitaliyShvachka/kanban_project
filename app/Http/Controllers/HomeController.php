@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Board;
 use App\Models\Status;
+use App\Models\Task;
 use App\Models\Team;
 use App\User;
 use Illuminate\Contracts\View\Factory;
@@ -36,6 +37,8 @@ class HomeController extends Controller
         $teamsUser = $user->teams; // Отримати всі команди по користувачу (Collection)
         $teamsUser = $user->teams()->with('boards')->get();//Доповнюємо конструктор запитів невідкладним вибором звʼязків Board
        $id = Auth::id();// Отримуємо id авторизованого користувача
+        $tasks= Task::with('board')->get();
+        dump($tasks);
 //        $teamsUser = User::find($id)->teams()->first();
 //        $teams = User::find($id)->teams()->get();//отримуємо список команд, де учасником є авторизований користувач
 //        $boards = Board::all();
@@ -43,6 +46,7 @@ class HomeController extends Controller
         return view('home', [
             'teams' => $teamsUser,
             'statuses' => $statuses,
+            'tasks'=>$tasks,
         ]);
     }
 

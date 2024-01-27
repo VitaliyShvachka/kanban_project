@@ -33,8 +33,9 @@ Route::group(['middleware' => 'set_locale'],function(){
 //TaskController
     Route::get('/task/{board}/create', 'TaskController@create')->name('task.create');
     Route::get('/board/{board}/{task}/show', 'TaskController@show')->name('task.show');
-    Route::post('/task', 'TaskController@store')->name('task.store');
-    Route::post('/task/update/{task}', 'TaskController@update')->name('task.update');
+    Route::post('/task/{board}', 'TaskController@store')->name('task.store');
+    Route::put('/task/update/{task}', 'TaskController@update')->name('task.update');
+    Route::delete('/task/destroy/{task}', 'TaskController@destroy')->name('task.destroy');
 });
 //Головна сторінка. На ній відображаємо дошку
 

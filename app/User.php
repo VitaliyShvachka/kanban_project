@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Task;
 use App\Models\Team;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -32,5 +33,10 @@ class User extends Authenticatable
     public function memberTeams()
     {
         return $this->belongsTo(Team::class, '');
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'users_task', 'user_id', 'task_id');
     }
 }
