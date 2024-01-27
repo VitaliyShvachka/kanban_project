@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -43,5 +44,12 @@ class HomeController extends Controller
             'teams' => $teamsUser,
             'statuses' => $statuses,
         ]);
+    }
+
+    public function changeLocale($locale)
+    {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+        return redirect()->back();
     }
 }
