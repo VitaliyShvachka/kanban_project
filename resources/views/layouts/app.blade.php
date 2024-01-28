@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{Session::get('locale')}}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
 {{--    <title>{{ env('APP_NAME', 'Kanban') }}</title>--}}
     <title>@lang('main.site_name')</title>
 
@@ -59,6 +59,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">@lang('main.login')</a></li>
                         <li><a href="{{ url('/register') }}">@lang('main.register')</a></li>
@@ -78,13 +79,16 @@
 
             </div>
             <div class="collapse navbar-collapse navbar-right">
+
                 @if (App::isLocale('en'))
+                    {{Session::set('locale', 'uk')}}
                     <p>Мова: <a href="{{route('locale', 'uk')}}">UA</a></p>
 
                 @else
                     <p>Language: <a href="{{route('locale', 'en')}}">EN</a></p>
 
                 @endif
+
             </div>
         </div>
 

@@ -31,7 +31,6 @@ class TaskController extends Controller
     {
         $members = [];
         $board = Board::find($board->id);
-
         $teams = $board->team()->with('users')->get();
         foreach ($teams as $team){
             foreach ($team->users as $user){
