@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
 {{--    <title>{{ env('APP_NAME', 'Kanban') }}</title>--}}
     <title>@lang('main.site_name')</title>
 
