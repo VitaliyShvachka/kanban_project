@@ -9,7 +9,7 @@ class Task extends Model
 {
     protected $fillable = ['status_id', 'board_id', 'name', 'description'];
 
-    public function statuses()
+    public function status()
     {
         return $this->hasMany(Status::class);
     }

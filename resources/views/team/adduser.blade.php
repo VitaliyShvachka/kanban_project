@@ -62,7 +62,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users_tiams as $user)
+                            @foreach($users_teams as $user)
                                 <tr>
                                     <td>
                                         <div>{{$user->id}}</div>

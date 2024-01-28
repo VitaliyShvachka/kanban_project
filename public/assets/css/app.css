@@ -1,0 +1,23 @@
+.category-list {
+    list-style: none;
+    width: 33%;
+    height: 100vh;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.category-list li {
+    /*border: 1px solid black;*/
+    page-break-inside: avoid;
+    break-inside: avoid;
+    text-align: center;
+}
+.category-list li:first-child {
+    font-size: 20px;
+}
+.task_wrapper{
+    display: flex;
+    flex-direction: row;
+}

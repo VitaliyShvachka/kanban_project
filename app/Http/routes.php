@@ -11,11 +11,13 @@
 |
 */
 
-Route::auth();
+
 //switch language
 Route::get('locale/{locale}', 'HomeController@changeLocale')->name('locale');
 
 Route::group(['middleware' => 'set_locale'],function(){
+    Route::auth();
+
     Route::get('/', 'HomeController@index')->name('main');
 
 //  TeamController
@@ -33,7 +35,7 @@ Route::group(['middleware' => 'set_locale'],function(){
 //TaskController
     Route::get('/task/{board}/create', 'TaskController@create')->name('task.create');
     Route::get('/board/{board}/{task}/show', 'TaskController@show')->name('task.show');
-    Route::post('/task/{board}', 'TaskController@store')->name('task.store');
+    Route::post('/task', 'TaskController@store')->name('task.store');
     Route::put('/task/update/{task}', 'TaskController@update')->name('task.update');
     Route::delete('/task/destroy/{task}', 'TaskController@destroy')->name('task.destroy');
 });

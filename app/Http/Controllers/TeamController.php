@@ -73,7 +73,7 @@ class TeamController extends Controller
         } else {
             $data['team_id'] = $id;
             $data['team_name'] = $team->name;
-            $data['users_tiams'] = $this->getUsersWithTeams($id);
+            $data['users_teams'] = $this->getUsersWithTeams($id);
         }
         return view('team.adduser', $data);
     }

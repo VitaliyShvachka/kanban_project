@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Board;
 use App\Models\Task;
 use App\Models\Team;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,31 +29,25 @@ class TaskController extends Controller
      */
     public function create(Board $board)
     {
-        $tasks = Task::with('users')->get();
+        $members = [];
+        $board = Board::find($board->id);
 
-        foreach ($tasks as $task){
-            foreach ($task->users as $user){
-                dump($user->name);
+        $teams = $board->team()->with('users')->get();
+        foreach ($teams as $team){
+            foreach ($team->users as $user){
+                $members[] = $user->name;
             }
         }
-        return view('tasks.create', ['board' => $board]);
+        return view('tasks.create', ['board' => $board, 'members' => $members]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Requests\TaskCreateForm $request, Board $board)
-    {
-        Task::create([
-            'status_id' => 1,
-            'board_id' => $board->id,
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
 
+    public function store(Request $request)
+    {
+        $task = new Task();
+        $task->status_id = 1;
+        $task->fill($request->all());
+        $task->save();
         return redirect()->route('main');
 
     }
@@ -63,7 +58,7 @@ class TaskController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($task)
     {
@@ -81,7 +76,7 @@ class TaskController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($task)
     {
