@@ -1,7 +1,8 @@
-<button class="btn btn-primary">Добавить задачу</button>
+<a href="{{ route('team.create') }}" class="btn btn-primary">Додати команду</a>
 <ul id="task-list">
-    <li>Задача 1</li>
-    <li>Задача 2</li>
-    <li>Задача 3</li>
+@foreach($teams as $team)
+        <li>{{$team->name}}
+                <a href="{{ route('board.create', ['$team' => $team->id]) }}" title="">[+ Дошка]</a>
+        </li>
+@endforeach
 </ul>
-

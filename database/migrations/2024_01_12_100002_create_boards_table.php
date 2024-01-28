@@ -31,6 +31,6 @@ class CreateBoardsTable extends Migration
       Schema::table('boards', function (Blueprint $table){
         $table->dropForeign('boards_team_id_foreign');
       });
-      Schema::dropIfExists('boards');
+      Schema::drop('boards');
     }
 }

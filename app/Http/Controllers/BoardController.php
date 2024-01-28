@@ -3,34 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
-use App\Models\Boards;
+use App\Models\Task;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class BoardController extends Controller
 {
-    public function show()
-    {
+  public function create(Team $team)
+  {
 
-    }
-    public function create()
-    {
-        $idTeam = filter_input(INPUT_GET, 'idTeam');
-        return view('form', ['idTeam'=>$idTeam]);
-    }
-    public function save()
-    {
+      return view('boards.create', ['team' => $team]);
 
-    }
-    public function store(Request $request)
-    {
-        $title = $request->input('title');
-        $idTeam = $request->input('team_id');
-        $board = new Boards();
-        $board->title = $title;
-        $board->team_id = $idTeam;
-        $board->save();
-        return redirect(route('main'));
-    }
+
+  }
+  public function store(Request $request, Team $team)
+  {
+      $team = Team::find($team->id);
+      $board = new Board();
+      $board->title = $request->title;
+      $board->team_id =$team->id;
+      $board->save();
+      return redirect()->route('main');
+  }
+  public function show(Board $board){
+        $tasks = Task::all();
+        return view('boards.show', [
+            'board' => $board,
+            'tasks' => $tasks
+        ]);
+  }
 }
