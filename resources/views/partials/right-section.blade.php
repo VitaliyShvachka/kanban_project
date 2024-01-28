@@ -1,105 +1,139 @@
-<section class="right-section">
-
-{{--    @foreach($statuses as $status)--}}
-{{--        <div class="column">{{$status->name}}</div>--}}
-{{--        @foreach($tasks as $task)--}}
-{{--            {{ $task }}--}}
-{{--            @if($task->status_id === $status->id)--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div><span>Задача: {{ $task->name }}--}}
-{{--                            @if($task->status_id !== 3)--}}
-{{--                                <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">--}}
-{{--                                    {{ method_field('PUT') }}--}}
-{{--                                    {{ csrf_field() }}--}}
-{{--                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">z--}}
-{{--                                    </button>--}}
-{{--                                </form>--}}
-{{--                            @else--}}
-{{--                                <form id="delete" action="{{ route('task.destroy', ['$task'=>$task->id]) }}"--}}
-{{--                                      method="post">--}}
-{{--                                    {{ method_field('DELETE') }}--}}
-{{--                                    {{ csrf_field() }}--}}
-{{--                                <a href="{{ route('task.destroy', [$task]) }}">--}}
-{{--                                    <span class="glyphicon glyphicon-forward"></span>--}}
-{{--                                </a>--}}
-{{--                                <button type="submit" id="delete" class="btn btn-default btn-sm">--}}
-{{--                                        <i class="material-icons" style="font-size:10px; color:#f32411">close</i>--}}
-{{--                                    </button>--}}
-{{--                                </form>--}}
-{{--                            @endif--}}
-{{--                            </span>--}}
-{{--                    </div>--}}
-{{--                    <div>Опис: {{ $task->description }}</div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-{{--        @endforeach--}}
-{{--    @endforeach--}}
-
-    <div class="task_wrapper">
-                    <ul class="category-list">
-                        <li class="category-item">to do</li>
-                        @foreach($tasks as $task)
-                            @if($task->status_id == 1)
-                                <li class="category-item">{{$task->name}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-warning text-white">
+                    <h5 class="text-center">TO DO</h5>
+                </div>
+                <div class="card-body task-list" data-column="todo">
+                    @foreach($tasks as $task)
+                        @if($task->status_id == 1)
+                            <div class="card border-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">
+                                    <h6 class="card-title">Назва: {{ $task->name }}</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Опис: {{ $task->description }}</p>
+                                </div>
+                                <div class="card-body">Виконавці:
+                                    @foreach($members as $key=> $name)
+                                        <ul>
+                                            <li>{{ $name }}</li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+                                <div class="bg-light clearfix">
+                                    <p class="card-text float-left">
+                                        Створено: {{ $task->created_at->format('d/m/Y') }}</p>
                                     <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
-                                    {{ method_field('PUT') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">
-                                        <span class="glyphicon glyphicon-forward"></span>
-                                    </button>
+                                        {{ method_field('PUT') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" id="status_update" class="float-right"
+                                                data-bs-toggle="button">
+                                            <i class="fa fa-arrow-circle-right"
+                                               style="font-size:22px;color:#7be309"></i>
+                                        </button>
                                     </form>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-
-                <ul class="category-list">
-                    <li class="category-item">In progress</li>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="text-center">In progress</h5>
+                </div>
+                <div class="card-body task-list" data-column="todo">
                     @foreach($tasks as $task)
                         @if($task->status_id == 2)
-                            <li class="category-item">{{$task->name}}
-                                <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
-                                    {{ method_field('PUT') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">
-                                        <span class="glyphicon glyphicon-forward"></span>
-                                    </button>
-                                </form>
-                            </li>
+                            <div class="card border-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">
+                                    <h6 class="card-title">Назва: {{ $task->name }}</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Опис: {{ $task->description }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-body">Виконавці:
+                                        @foreach($members as $key=> $name)
+                                            <ul>
+                                                <li>{{ $name }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="bg-light clearfix">
+                                    <p class="card-text float-left">
+                                        Розпочато: {{ $task->updated_at->format('d/m/Y H:i') }}</p>
+                                    <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
+                                        {{ method_field('PUT') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" id="status_update" class="float-right"
+                                                data-bs-toggle="button">
+                                            <i class="fa fa-arrow-circle-right"
+                                               style="font-size:22px;color:#7be309"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         @endif
                     @endforeach
-                </ul>
-
-                <ul class="category-list">
-                    <li class="category-item">Done</li>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="text-center">Done</h5>
+                </div>
+                <div class="card-body task-list" data-column="todo">
                     @foreach($tasks as $task)
                         @if($task->status_id == 3)
-                            <li class="category-item">{{$task->name}}
-                                <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
-                                    {{ method_field('PUT') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">
-                                        <span class="glyphicon glyphicon-forward"></span>
-                                    </button>
-                                </form>
-                                <form id="delete" action="{{ route('task.destroy', ['$task'=>$task->id]) }}"--}}
-                                      method="post">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                <a href="{{ route('task.destroy', [$task]) }}">
-                                    <span class="glyphicon glyphicon-forward"></span>
-                                </a>
-                                <button type="submit" id="delete" class="btn btn-default btn-sm">
-                                        <i class="material-icons" style="font-size:10px; color:#f32411">close</i>
-                                    </button>
-                                </form>
-                            </li>
+                            <div class="card border-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">
+                                    <h6 class="card-title">Назва: {{ $task->name }}</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Опис: {{ $task->description }}</p>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="card-body">Виконавці:
+                                        @foreach($members as $key=> $name)
+                                            <ul>
+                                                <li>{{ $name }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="bg-light clearfix">
+                                    <p class="card-text float-left">
+                                        Завершено: {{ $task->updated_at->format('d/m/Y H:i') }}</p>
+                                    <form id="delete" action="{{ route('task.destroy', ['$task'=>$task->id]) }}"
+                                          method="post">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" id="delete" class="close" aria-label="Close"
+                                                style='font-size:24px;color:red'>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         @endif
                     @endforeach
-                </ul>
-
-
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-</section>
+
+
+
+
+
 

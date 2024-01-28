@@ -6,11 +6,12 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2">
         @include('partials.leftSection.teams')
         @include('partials.leftSection.boards')
+{{--        @include('partials.leftSection.tasks')--}}
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         @include('partials.right-section')
       </div>
     </div>

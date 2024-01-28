@@ -1,10 +1,8 @@
-
-
 <form action="{{route('task.store')}}" method="post">
     {{ csrf_field() }}
     <label for="name" class="col-md-4 control-label">Назва</label>
     <input id="name" type="text" class="form control" name="name"/>
-    <select multiple name="membersTask[]">
+    <select multiple name="members[]">
         @foreach($members as $item)
             <option>{{$item}}</option>
         @endforeach

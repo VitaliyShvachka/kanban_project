@@ -6,8 +6,8 @@
 </style>
 
 <section class="left-section">
- @include('partials.leftSection.tasks')
  @include('partials.leftSection.teams')
+ @include('partials.leftSection.boards')
 
 </section>
 
