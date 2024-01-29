@@ -12,7 +12,7 @@ class Team extends Model
     protected $fillable = ['name','user_id'];
     public function users()
     {
-        return $this->belongsToMany(User::class, 'teams_user', 'team_id', 'user_id');
+        return $this->belongsToMany(User::class, 'teams_user');
     }
     public function boards()
     {
