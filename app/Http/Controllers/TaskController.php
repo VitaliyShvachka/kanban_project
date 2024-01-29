@@ -30,7 +30,7 @@ class TaskController extends Controller
     public function create(Board $board)
     {
         $members = [];
-        $board = Board::find($board->id);
+        $board = Board::findOrFail($board->id);
         $teams = $board->team()->with('users')->get();
         foreach ($teams as $team){
             foreach ($team->users as $user){
@@ -41,17 +41,14 @@ class TaskController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Requests\TaskCreateForm $request)
     {
         $task = new Task();
         $task->status_id = 1;
         $task->fill($request->all());
         $task->save();
         return redirect()->route('main');
-
     }
-
-
     /**
      * Update the specified resource in storage.
      *

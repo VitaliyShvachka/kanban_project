@@ -54,8 +54,11 @@ class HomeController extends Controller
     }
     public function changeLocale($locale)
     {
+//        dd($locale);
         session(['locale' => $locale]);
         App::setLocale($locale);
+
         return redirect()->back();
+
     }
 }

@@ -79,16 +79,13 @@
 
             </div>
             <div class="collapse navbar-collapse navbar-right">
-
                 @if (App::isLocale('en'))
-                    {{Session::set('locale', 'uk')}}
+{{--                    {{Session::set('locale', 'uk')}}--}}
                     <p>Мова: <a href="{{route('locale', 'uk')}}">UA</a></p>
 
                 @else
                     <p>Language: <a href="{{route('locale', 'en')}}">EN</a></p>
-
                 @endif
-
             </div>
         </div>
 
