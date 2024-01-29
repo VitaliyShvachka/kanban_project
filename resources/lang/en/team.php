@@ -9,8 +9,8 @@ return [
 
     |
     */
-    'head-home-sidebar' => 'Add Team',
-    'add-board-btn-sidebar' => 'Board',
+    'head-home-sidbar' => 'Add Team',
+    'add-board-btn-sidbar' => 'Board',
 
     'heading-create' => 'Create a new team',
     'name-team' => 'Team name',
