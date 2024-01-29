@@ -22,7 +22,7 @@ Route::group(['middleware' => 'set_locale'],function(){
 
 //  TeamController
     Route::get('/team/create', 'TeamController@create')->name('team.create');
-    Route::get('/team/{id}/adduser', 'TeamController@adduser');
+    Route::get('/team/{team}/adduser', 'TeamController@adduser')->name('team.adduser');
     Route::get('/team/users', 'TeamController@autocomplete');
     Route::post('/team', 'TeamController@store')->name('team.store');
     Route::post('/team/teamUserStore', 'TeamController@teamUserStore')->name('team.teamUserStore');
