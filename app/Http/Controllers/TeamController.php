@@ -22,7 +22,7 @@ class TeamController extends Controller
     }
 
     /**
-     *  Saves the data of the created command
+     * Saves the data of the created command
      * @param TeamStoreForm $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -36,18 +36,18 @@ class TeamController extends Controller
     }
 
     /**
-     *   displays the form for adding new users to the team
+     * displays the form for adding new users to the team
      * @param Request $request
      * @param Team $team
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function addUser(Request $request, Team $team)
     {
-        return view('team.adduser', ['team'=>$team]);
+        return view('team.adduser', ['team' => $team]);
     }
 
     /**
-     *  Saving commands to the new user's database
+     * Saving commands to the new user's database
      * @param TeamAddUserStoreForm $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -58,7 +58,7 @@ class TeamController extends Controller
         $user = User::where('login', $request->login)->firstOrFail(); // Отримуємо користувача з логіну з таблиці users
         // Перевіряємо, чи існує у користувача пов'язана команда із зазначеним team_id
         if ($user->teams()->where('team_id', $request->team_id)->exists()) {
-             return redirect()->back()->withErrors(['user_login' => trans('validation.custom.user_teams.unique_team')])->withInput();
+            return redirect()->back()->withErrors(['user_login' => trans('validation.custom.user_teams.unique_team')])->withInput();
         } else {
             TeamUser::create([
                 'team_id' => $request->team_id,
