@@ -23,6 +23,6 @@ class TeamStoreForm extends Request
      */
     public function rules()
     {
-        return ['name' => 'required|string|max:5'];
+        return ['name' => 'required|string|max:255'];
     }
 }
