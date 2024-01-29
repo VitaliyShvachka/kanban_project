@@ -26,9 +26,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // Відношення "багато до багатьох" з явною вказівкою таблиці
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'teams_user', 'user_id', 'team_id');
+    }
+
+    // Відношення "один до багатьох" (користувач може бути власником безлічі команд)
+    public function teamOwner()
+    {
+        return $this->hasMany(Team::class, 'user_id');
+    }
+
+    public function isTeamOwner($teamId)
+    {
+        return $this->teamOwner()->where('id', $teamId)->exists();
     }
     public function memberTeams()
     {
