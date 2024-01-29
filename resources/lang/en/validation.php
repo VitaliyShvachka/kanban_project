@@ -95,6 +95,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'user_teams' => [
+            'unique_team' => 'This user is already added to this team',
+        ],
     ],
 
     /*

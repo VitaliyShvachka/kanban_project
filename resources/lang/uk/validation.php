@@ -79,7 +79,6 @@ return [
     'timezone'             => ':attribute має бути дійсною зоною.',
     'unique'               => 'Атрибут : уже використано.',
     'url'                  => 'Формат :attribute недійсний.',
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -94,6 +93,9 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'user_teams' => [
+            'unique_team' => 'Цей користувач вже доданий до цієї команди',
         ],
     ],
 
