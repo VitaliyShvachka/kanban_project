@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $teamsUser = $user->teams()->with('boards')->get();//Доповнюємо конструктор запитів невідкладним вибором звʼязків Board
-        $tasks = Task::with('board')->get();
+        $tasks= Task::with('board')->get();
         $statuses = Status::all();
         $usersTask = Task::with('users')->get();
         $members = [];
@@ -47,7 +47,7 @@ class HomeController extends Controller
         return view('home', [
             'teams' => $teamsUser,
             'statuses' => $statuses,
-            'tasks' => $tasks,
+            'tasks'=>$tasks,
             'members' => $members,
         ]);
     }

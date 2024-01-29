@@ -6,6 +6,7 @@ use App\Models\Board;
 use App\Models\Task;
 use App\Models\Team;
 use Auth;
+use Beta\B;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,25 +30,21 @@ class TaskController extends Controller
      */
     public function create(Board $board)
     {
-        $members = [];
-        $board = Board::findOrFail($board->id);
-
-        $teams = $board->team()->with('users')->get();
-        foreach ($teams as $team) {
-            foreach ($team->users as $user) {
-                $members[] = $user->name;
-            }
-        }
-        return view('tasks.create', ['board' => $board, 'members' => $members]);
+        $board = $board->team()->with('users')->get();
+        $board_id = $board->toArray();
+        return view('tasks.create', ['board' => $board, 'board_id'=>$board_id[0]['id']]);
     }
 
 
-    public function store(Requests\TaskCreateForm $request)
+    public function store(Request $request)
     {
+
         $task = new Task();
         $task->status_id = 1;
+        $task->board_id = $request->board_id;
         $task->fill($request->all());
         $task->save();
+        $task->users()->attach($request->input('members'));
         return redirect()->route('main');
 
     }
