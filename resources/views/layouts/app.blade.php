@@ -40,7 +40,7 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body id="app-layout">
+<body id="app-layout ">
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
 

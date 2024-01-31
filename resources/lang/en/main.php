@@ -10,5 +10,5 @@ return [
     'password' => 'Password',
     'remember_me' => 'Remember Me',
     'forgot_psw' => 'Forgot Your Password?',
-    ''
+    'copyright' => 'Copyright'
 ];

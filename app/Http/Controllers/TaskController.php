@@ -23,9 +23,8 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
+     * @param Board $board
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function create(Board $board)
     {
@@ -41,7 +40,10 @@ class TaskController extends Controller
         return view('tasks.create', ['board' => $board, 'members' => $members]);
     }
 
-
+    /**
+     * @param Requests\TaskCreateForm $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Requests\TaskCreateForm $request)
     {
         $task = new Task();

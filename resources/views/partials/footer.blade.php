@@ -1,8 +1,8 @@
 <footer>
-    <div class="container-fluid">
+    <div class="container-fluid fixed-bottom">
         <div class="row">
             <div class="well well-sm">
-                <p>Копирайт © 2024</p>
+                <p>@lang('main.copyright') © {{date("Y")}}</p>
             </div>
         </div>
     </div>
