@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Board;
 use App\Models\Task;
-use App\Models\Team;
-use Auth;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class TaskController extends Controller
@@ -31,7 +27,6 @@ class TaskController extends Controller
     {
         $members = [];
         $board = Board::findOrFail($board->id);
-
         $teams = $board->team()->with('users')->get();
         foreach ($teams as $team) {
             foreach ($team->users as $user) {
@@ -60,9 +55,8 @@ class TaskController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($task)
+    public function update(Task $task)
     {
-        $task = Task::findOrFail($task);
         $status = $task->status_id;
         if ($status < 3) {
             $task->update([
@@ -77,12 +71,12 @@ class TaskController extends Controller
      *
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
-    public function destroy($task)
+    public function destroy(Task $task)
     {
-        $task = Task::findOrFail($task);
-        $task->delete($task);
+        $this->authorize('destroy', $task);
+        $task->delete();
         return redirect()->back();
-
     }
 }
