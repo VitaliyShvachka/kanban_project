@@ -1,71 +1,114 @@
-<section class="right-section">
-    <div class="task_wrapper">
-                    <ul class="category-list">
-                        <li class="category-item">To do</li>
-                        @foreach($tasks as $task)
-                            @if($task->status_id == 1)
-                                <li class="category-item">{{$task->name}}
-                                    @foreach($members as $member)
-                                        <p>{{$member}}</p>
-                                    @endforeach
-                                    <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
-                                    {{ method_field('PUT') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">
-                                        <span class="glyphicon glyphicon-forward"></span>
-                                    </button>
-                                    </form>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-
-                <ul class="category-list">
-                    <li class="category-item">In progress</li>
-                    @foreach($tasks as $task)
-                        @if($task->status_id == 2)
-                            <li class="category-item">{{$task->name}}
-                                @foreach($members as $member)
-                                    <p>{{$member}}</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 bg-warning">
+            <h3 class="text-center">TO DO</h3>
+            @foreach($tasks as $task)
+                @if($task->status_id == 1)
+                    <div class="well well-sm">
+                        <div class="border">
+                            <h4 class="card-title">{{ $task->name }}</h4>
+                        </div>
+                        <div class="border">
+                            <p class="card-text">{{ $task->description }}</p>
+                        </div>
+                        <div class="border">
+                            <p>Виконавці:
+                                @foreach($members as $key=> $name)
+                                    <small>{{ $name }}, </small>
                                 @endforeach
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">Початок: {{ $task->created_at->format('d.m.Y') }}</div>
+                            <div class="col-sm-4 text-right">
                                 <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
                                     {{ method_field('PUT') }}
                                     {{ csrf_field() }}
-                                    <button type="submit" id="status_update" class="btn " data-bs-toggle="button">
-                                        <span class="glyphicon glyphicon-forward"></span>
+                                    <button type="submit" id="status_update" class="btn btn-success">
+                                        <i class="fa fa-arrow-circle-right"></i>
                                     </button>
                                 </form>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-
-                <ul class="category-list">
-                    <li class="category-item">Done</li>
-                    @foreach($tasks as $task)
-                        @if($task->status_id == 3)
-                            <li class="category-item">{{$task->name}}
-                                @foreach($members as $member)
-                                    <p>{{$member}}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        <div class="col-md-4 bg-info">
+            <h3 class="text-center">In progress</h3>
+            @foreach($tasks as $task)
+                @if($task->status_id == 2)
+                    <div class="well well-sm">
+                        <div class="border">
+                            <h4 class="card-title">{{ $task->name }}</h4>
+                        </div>
+                        <div class="border">
+                            <p class="card-text">{{ $task->description }}</p>
+                        </div>
+                        <div class="border">
+                            <p>Виконавці:
+                                @foreach($members as $key=> $name)
+                                    <small>{{ $name }}, </small>
                                 @endforeach
-                                <form id="delete" action="{{ route('task.destroy', ['$task'=>$task->id]) }}"--}}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">Початок: {{ $task->created_at->format('d.m.Y') }}</div>
+                            <div class="col-sm-4 text-right">
+                                <form id="status_update" action="{{ route('task.update', [$task]) }}" method="post">
+                                    {{ method_field('PUT') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" id="status_update" class="btn btn-success">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        <div class="col-md-4 bg-success">
+            <h3 class="text-center">Done</h3>
+            @foreach($tasks as $task)
+                @if($task->status_id == 3)
+                    <div class="well well-sm">
+                        <div class="border">
+                            <h4 class="card-title">{{ $task->name }}</h4>
+                        </div>
+                        <div class="border">
+                            <p class="card-text">{{ $task->description }}</p>
+                        </div>
+                        <div class="border">
+                            <p>Виконавці:
+                                @foreach($members as $key=> $name)
+                                    <small>{{ $name }}, </small>
+                                @endforeach
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">Початок: {{ $task->created_at->format('d.m.Y') }}</div>
+                            <div class="col-sm-4 text-right">
+                                <form id="delete" action="{{ route('task.destroy', ['$task'=>$task->id]) }}"
                                       method="post">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                <a href="{{ route('task.destroy', [$task]) }}">
-                                    <span class="glyphicon glyphicon-forward"></span>
-                                </a>
-                                <button type="submit" id="delete" class="btn btn-default btn-sm">
-                                        <i class="material-icons" style="font-size:10px; color:#f32411">close</i>
+                                    <button type="submit" id="delete" class="btn btn-danger">
+                                        <i class="fa fa-close"></i>
                                     </button>
                                 </form>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-
-
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
     </div>
+</div>
 
-</section>
+
+
+
+
+
 

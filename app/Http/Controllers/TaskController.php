@@ -30,10 +30,11 @@ class TaskController extends Controller
     public function create(Board $board)
     {
         $members = [];
-        $board = Board::find($board->id);
+        $board = Board::findOrFail($board->id);
+
         $teams = $board->team()->with('users')->get();
-        foreach ($teams as $team){
-            foreach ($team->users as $user){
+        foreach ($teams as $team) {
+            foreach ($team->users as $user) {
                 $members[] = $user->name;
             }
         }
@@ -41,7 +42,7 @@ class TaskController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Requests\TaskCreateForm $request)
     {
         $task = new Task();
         $task->status_id = 1;

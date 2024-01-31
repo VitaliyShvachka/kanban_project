@@ -1,7 +1,6 @@
-<button class="btn btn-primary">Добавить команду</button>
+<h4>Виконавці</h4>
 <ul id="task-list">
-    <li>Задача 1</li>
-    <li>Задача 2</li>
-    <li>Задача 3</li>
+    @foreach($members as $member)
+        <li>{{$member->name}} </li>
+    @endforeach
 </ul>
-
