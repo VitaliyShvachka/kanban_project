@@ -13,7 +13,7 @@
 
 
 //switch language
-Route::get('locale/{locale}', 'HomeController@changeLocale')->name('locale');
+Route::get('locale/{locale}', 'LocaleController@changeLocale')->name('locale');
 
 
 

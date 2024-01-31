@@ -47,10 +47,18 @@ class BoardController extends Controller
     public function show(Board $board){
         $tasks= Task::with('board')->where('board_id', '=', $board->id)->get();
         $teams = Team::where('id', '=', $board->team_id)->get();
+        $usersTask = Task::with('users')->get();
+        $members = [];
+        foreach ($usersTask as $item) {
+            foreach ($item->users as $user) {
+                $members[] = $user->name;
+            }
+        }
         return view('boards.show', [
             'board' => $board,
             'tasks' => $tasks,
             'teams' => $teams,
+            'members' => $members,
         ]);
   }
 }
