@@ -24,8 +24,10 @@ class TaskCreateForm extends Request
     public function rules()
     {
         return [
-            'name'=>'required| min:3',
+            'name' => 'required| min:3',
             'description' => 'required|max:255',
+            'board_id' => 'required|integer',
+            'members' => 'required',
         ];
     }
 }
